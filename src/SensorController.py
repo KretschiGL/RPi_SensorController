@@ -61,6 +61,7 @@ class SensorController:
             csvWriter = self._createCsvWriter(csvFile)                                      # Create new csv writer instance
             end = time.time() + duration                                                    # Calculate when to stop
             self._measureUntil(end, interval, printValues, csvWriter)                       # Run the measurement
+        return self
 
     def _ensureFolder(self, folder):
         if not os.path.exists(folder):             # Check if folder exists
