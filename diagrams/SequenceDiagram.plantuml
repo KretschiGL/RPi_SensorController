@@ -1,0 +1,60 @@
+@startuml
+
+participant Program.py as pgm
+participant SensorController.py as sc
+participant TemperatureSensor_MAX31865.py as stemp
+participant csv
+
+activate pgm
+pgm -> sc : SensorController()
+
+activate sc
+
+loop registration
+
+    pgm -> sc : register(factory : ISensor)
+    pgm <-- sc : SensorController
+
+end
+
+pgm -> sc : build()
+
+loop foreach factory
+
+    sc -> stemp : TemepratureSensor_MAX31865()
+    activate stemp
+
+end
+
+pgm <-- sc : SensorController
+
+pgm -> sc : measure()
+
+sc -> sc : open(file)
+sc -> csv : writer(file)
+activate csv
+sc -> csv : writerow(headers)
+
+loop measure until end
+
+    loop foreach sensor
+
+        sc -> stemp : getValue()
+        sc <-- stemp : temperature
+
+        opt if print enabled
+
+            sc -> stemp : printValue()
+
+        end
+
+    end
+
+    sc -> csv : writerow(values)
+
+    sc -> sc : time.sleep(duration)
+    
+end
+
+
+@enduml

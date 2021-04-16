@@ -1,0 +1,33 @@
+@startuml
+
+abstract class ISensor {
+    + {abstract} getName() : string
+    + {abstract} getValue() : number
+    + {abstract} printValue()
+}
+
+class TemperatureSensor_MAX31865 {
+    - _name : string
+    - _sensor : MAX31865
+
+    + TemperatureSensor_MAX31865(name, inout)
+}
+
+TemperatureSensor_MAX31865 ..|> ISensor
+
+class SensorController {
+    + register(factory : ISensor) : SensorController
+    + build() : SensorController
+    + measure() : SensorController
+}
+
+SensorController --> ISensor
+
+class Program {
+    + run()
+}
+
+Program --> SensorController
+Program --> TemperatureSensor_MAX31865
+
+@enduml
