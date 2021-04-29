@@ -23,14 +23,23 @@ class TemperatureSensor_Mock(ISensor):
         """
         return self._name
 
-    def getValue(self):
+    def getHeaders(self):
+        """
+        Returns a list of headers
+        """
+        return [f"{self._name}_Temp"]
+
+    def getValues(self):
         """
         Returns a normal distributed (N(25,1)) value
         """
-        return self._rng.normal(25,1)
+        return [self._rng.normal(25,1)]
 
-    def printValue(self):
+    def printValues(self):
         """
         Prints a temperature value
         """
-        print(f"[{self._name}] Temperature: {self.getValue():0.3f} C")
+        headers = self.getHeaders()
+        values = self.getValues()
+        for i in range(len(values)):
+            print(f"[{headers[i]}] Temperature: {values[i]:0.3f} C")

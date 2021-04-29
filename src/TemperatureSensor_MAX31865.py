@@ -30,14 +30,23 @@ class TemperatureSensor_MAX31865(ISensor):
         """
         return self._name
 
-    def getValue(self):
+    def getHeaders(self):
+        """
+        Returns a list of headers for the values
+        """
+        return [f"{self._name}_Temp"]
+
+    def getValues(self):
         """
         Returns the measured temperature
         """
-        return self._sensor.temperature
+        return [self._sensor.temperature]
 
-    def printValue(self):
+    def printValues(self):
         """
         Prints the currently measured temperature
         """
-        print(f"[{self._name}] Temperature: {self.getValue():0.3f} C")
+        headers = self.getHeaders()
+        values = self.getValues()
+        for i in range(len(values)):
+            print(f"[{headers[i]}] Temperature: {values[i]:0.3f} C")

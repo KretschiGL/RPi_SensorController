@@ -33,18 +33,26 @@ pgm -> sc : measure()
 sc -> sc : open(file)
 sc -> csv : writer(file)
 activate csv
+
+loop foreach sensor
+
+    sc -> stemp : getHeaders()
+    sc <-- stemp : [header]
+
+end
+
 sc -> csv : writerow(headers)
 
 loop measure until end
 
     loop foreach sensor
 
-        sc -> stemp : getValue()
-        sc <-- stemp : temperature
+        sc -> stemp : getValues()
+        sc <-- stemp : [temperature]
 
         opt if print enabled
 
-            sc -> stemp : printValue()
+            sc -> stemp : printValues()
 
         end
 

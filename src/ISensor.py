@@ -10,9 +10,13 @@ class ISensor(ABC):
         pass
 
     @abstractmethod
-    def getValue(self):
+    def getHeaders(self):
         pass
 
     @abstractmethod
-    def printValue(self):
+    def getValues(self):
+        pass
+
+    @abstractmethod
+    def printValues(self):
         pass

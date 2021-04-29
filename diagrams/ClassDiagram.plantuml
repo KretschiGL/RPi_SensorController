@@ -2,8 +2,9 @@
 
 abstract class ISensor {
     + {abstract} getName() : string
-    + {abstract} getValue() : number
-    + {abstract} printValue()
+    + {abstract} getHeaders() : [string]
+    + {abstract} getValues() : [number]
+    + {abstract} printValues()
 }
 
 class TemperatureSensor_MAX31865 {

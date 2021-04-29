@@ -70,8 +70,8 @@ class SensorController:
     def _createCsvWriter(self, csvfile):
         writer = csv.writer(csvfile, delimiter=",", quoting=csv.QUOTE_NONNUMERIC)    # Create csv writer instance
         header = ["Timestamp"]                                                       # Define header for first column (timestamps)
-        for n in self._sensors.keys():                                               # Loop through all sensors (key = name)
-            header.append(n)                                                         # Add sensor name to header list
+        for s in self._sensors.values():                                             # Loop through all sensors
+            header.extend(s.getHeaders())                                            # Adds a sensor's headers to the header list
         writer.writerow(header)                                                      # Write header row to file
         return writer                                                                # Return csv writer
 
@@ -84,8 +84,8 @@ class SensorController:
     def _getValues(self, printValues):
         values = [datetime.now()]                           # Set timestamp for measruement
         for s in self._sensors.values():                    # Loop through all sensors
-            v = s.getValue()                                # Get value of a sensor
-            values.append(v)                                # Add value to value list
+            v = s.getValues()                                # Get value of a sensor
+            values.extend(v)                                # Add value to value list
             if printValues:                                 # Check if values also should be printed
-                s.printValue()                              # If yes, print the value
+                s.printValues()                              # If yes, print the value
         return values                                       # Return timestamp and measured values
