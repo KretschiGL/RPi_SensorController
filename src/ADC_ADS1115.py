@@ -4,7 +4,7 @@ from .ISensor import ISensor
 GAIN = 1
 ADC_CHAN_NUM = 8
 
-class ADC_ACS1115(ISensor):
+class ADC_ADS1115(ISensor):
 
     def __init__(self, name, addr, channels=ADC_CHAN_NUM):
         self._name = name
