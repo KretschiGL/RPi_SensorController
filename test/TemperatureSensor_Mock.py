@@ -27,7 +27,7 @@ class TemperatureSensor_Mock(ISensor):
         """
         Returns a list of headers
         """
-        return [f"{self._name}_Temp"]
+        return ["Temp"]
 
     def getValues(self):
         """

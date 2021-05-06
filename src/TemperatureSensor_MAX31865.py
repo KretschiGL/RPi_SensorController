@@ -34,7 +34,7 @@ class TemperatureSensor_MAX31865(ISensor):
         """
         Returns a list of headers for the values
         """
-        return [f"{self._name}_Temp"]
+        return ["Temp"]
 
     def getValues(self):
         """

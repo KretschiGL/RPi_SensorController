@@ -71,7 +71,8 @@ class SensorController:
         writer = csv.writer(csvfile, delimiter=",", quoting=csv.QUOTE_NONNUMERIC)    # Create csv writer instance
         header = ["Timestamp"]                                                       # Define header for first column (timestamps)
         for s in self._sensors.values():                                             # Loop through all sensors
-            header.extend(s.getHeaders())                                            # Adds a sensor's headers to the header list
+            name = s.getName()                                                       # Getting name of sensor
+            header.extend([f"{name}_{h}" for h in s.getHeaders()])                   # Adds a sensor's headers with name as prefix to the header list
         writer.writerow(header)                                                      # Write header row to file
         return writer                                                                # Return csv writer
 
