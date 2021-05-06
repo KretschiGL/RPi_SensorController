@@ -2,7 +2,7 @@ from ADS1x15 import ADS1115
 from .ISensor import ISensor
 
 GAIN = 1
-ADC_CHAN_NUM = 8
+ADC_CHAN_NUM = 4
 
 class ADC_ADS1115(ISensor):
 
