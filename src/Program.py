@@ -15,9 +15,6 @@ class Program:
         # the temperature)
         controller = SensorController()\
             .register(lambda : TemperatureSensor_MAX31865("TempSensor1", board.D25))\
-            .register(lambda : TemperatureSensor_MAX31865("TempSensor2", board.D26))\
-            .register(lambda : TemperatureSensor_MAX31865("TempSensor3", board.D27))\
-            .register(lambda : TemperatureSensor_MAX31865("TempSensor4", board.D28))\
             .register(lambda : ADC_STM32F030("ADC"))\
             .build()
 
