@@ -1,4 +1,4 @@
-from ADS1x15 import ADS1115
+from ADS1x15 import ADS1115  # uses https://github.com/adafruit/Adafruit_Python_ADS1x15 --> update to https://github.com/adafruit/Adafruit_CircuitPython_ADS1x15
 from .ISensor import ISensor
 
 GAIN = 1
