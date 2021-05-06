@@ -13,9 +13,7 @@ class Test:
         controller = SensorController()\
             .register(lambda : TemperatureSensor_Mock("TempSensor1"))\
             .register(lambda : TemperatureSensor_Mock("TempSensor2"))\
-            .register(lambda : TemperatureSensor_Mock("TempSensor3"))\
-            .register(lambda : TemperatureSensor_Mock("TempSensor4"))\
             .build()
 
         # Run the measurement for 10s and print the values to the console
-        controller.measure(10, printValues=True)
+        controller.measure(15, exportInterval=5, printValues=True)
