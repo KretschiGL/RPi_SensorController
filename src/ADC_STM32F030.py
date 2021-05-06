@@ -34,8 +34,8 @@ class ADC_STM32F030(ISensor):
         First, the raw data for channels 1-8 is listed,
         then the voltage on the channel 1-8 is exported.
         """
-        headers = [f"RawData_{ch}" for ch in range(1,9)]         # Generating the column headers for the channels raw data
-        headers.extend([f"Voltage_{ch}" for ch in range(1,9)])   # Generating the column headesr for the channels voltages
+        headers = [f"RawData_{ch}" for ch in range(1, self._channels + 1)]         # Generating the column headers for the channels raw data
+        headers.extend([f"Voltage_{ch}" for ch in range(1, self._channels + 1)])   # Generating the column headesr for the channels voltages
         return headers
 
     def getValues(self):
