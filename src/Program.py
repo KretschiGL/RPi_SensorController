@@ -5,6 +5,7 @@ import board
 from .SensorController import SensorController
 from .TemperatureSensor_MAX31865 import TemperatureSensor_MAX31865
 from .ADC_STM32F030 import ADC_STM32F030
+from .ADC_ADS1115 import ADC_ADS1115
 
 class Program:
 
@@ -14,8 +15,9 @@ class Program:
         # With this design, multiple different sensors can be registered (not only for measuring
         # the temperature)
         controller = SensorController()\
-            .register(lambda : TemperatureSensor_MAX31865("TempSensor1", board.D25))\
-            .register(lambda : ADC_STM32F030("ADC"))\
+            .register(lambda : TemperatureSensor_MAX31865("TempSensor1", board.D25)) \
+            .register(lambda : ADC_STM32F030("ADC")) \
+            .register(lambda : ADC_ADS1115("ADC1", 0x48)) \
             .build()
 
         # Run the measurement for 10s and print the values to the console
